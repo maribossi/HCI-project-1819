@@ -6,7 +6,8 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server, { wsEngine: 'ws' });
 
-app.set('port', process.env.PORT || 8081);
+var port = process.env.PORT || 8081;
+app.set('port', port);
 
 server.listen(app.get('port'), function () {
     console.log('----- SERVER STARTED -----');
@@ -51,6 +52,6 @@ io.on('connection', function (socket) {
   })
 });
 
-server.listen(8081, function () {
+server.listen(port, function () {
   console.log(`Listening on ${server.address().port}`);
 });

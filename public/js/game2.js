@@ -22,8 +22,6 @@ function showMainscreen(data) {
 
 
 function draw() {
-
-
 }
 
 function newDrawing(data) {
@@ -34,9 +32,9 @@ function newDrawing(data) {
 
 function mouseDragged() {
 
-    // noStroke();
-    // fill(r,g,b);
-    // ellipse(mouseX, mouseY, 36,36);
+    noStroke();
+    fill(0);
+    ellipse(mouseX, mouseY, 36,36);
 
     var data = {
         x: mouseX,

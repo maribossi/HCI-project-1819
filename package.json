@@ -1,11 +1,11 @@
 {
-  "name": "phaser_tut2",
+  "name": "hci-project",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
-  "author": "Scott Westover",
+  "author": "Marianne Bossema",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.3",
@@ -13,5 +13,14 @@
     "socket.io": "^2.1.1"
   },
   "keywords": [],
-  "description": ""
+  "description": "MediaTech HCI project",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maribossi/HCI-project-1819.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maribossi/HCI-project-1819/issues"
+  },
+  "homepage": "https://github.com/maribossi/HCI-project-1819#readme"
 }

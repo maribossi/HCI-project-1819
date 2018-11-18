@@ -1,9 +1,12 @@
 {
   "name": "hci-project",
   "version": "1.0.0",
-  "main": "server.js",
+  "engines": {
+    "node": "8.12.0"
+  },
+  "main": "socket.io.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node socket.io.js"
   },
   "author": "Marianne Bossema",
   "license": "ISC",

@@ -1,95 +1,226 @@
 var socket;
 var r, g, b;
-var x, y, z;
-var xpos, ypos;
 
+var img1, img2, img3, img4, img5, img6;
+var players = [];
+var nicknames = ["Joost", "Marianne", "Pietje", "Puk"];
+var avatars = ["AvatarA", "AvatarB", "AvatarC", "AvatarD"];
+var selections = ["Back", "Front", "Left", "Right", "Top", "Bottom"];
+var positions = [[500, 100], [755, 100], [500, 355], [755, 355]];
+
+
+
+function preload() {
+    img1 = loadImage('images/cube1.png');
+    img2 = loadImage('images/cube2.png');
+    img3 = loadImage('images/cube3.png');
+    img4 = loadImage('images/cube4.png');
+    img5 = loadImage('images/cube5.png');
+    img6 = loadImage('images/cube6.png');
+}
 
 function setup() {
-    createCanvas(800, 600);
-    
-    r = random(255);
-    b = random(255);
-    g = random(255);
+    createCanvas(2560, 1600);
 
-    xpos = 400;
-    ypos = 300;
-    x = 0;
-    y = 0;
+    background(0, 0, 51);
+
+    // for (var i = 0; i < 4; i++) {
+    //     players[i] = {
+    //         playerId: i,
+    //         nickname: nicknames[i],
+    //         avatar: avatars[i],
+    //         selection: selections[i],
+    //         position: positions[i],
+    //         points: 0
+    //     };
+    // }
+
+    // updatePlayerPoints();
+    // updateScreen();
 
 
-    background(r,g,b);
 
-    socket = io();
-    socket.on('currentPlayers', showMainscreen);
+    socket = io.connect();
+    socket.on('connected', function onServerConnected(data) {
+        if (data === socket.id) {
+            console.log("this is me");
+        } else {
+            console.log("other client");
+        }
+    });
+
+    socket.on('playerLogin', handleSocketEvent);
+    socket.on('gameStarted', handleSocketEvent);
+    socket.on('playerCubeSelection', handleSocketEvent);
 
 }
 
-
-
-function showMainscreen(data) {
-    background(0);
-    console.log("I am the main screen !!!")
-    socket.on('playerDraw', newDrawing);
+function handleSocketEvent(s_players) {
+    updatePlayers(s_players);
+    updatePlayerPoints();
+    updateScreen();
 }
 
 
-function draw() {
-    
-    //add/subract xpos and ypos
-    xpos = xpos + x;
-    ypos = ypos - y;
+function updatePlayers(s_players) {
+    var i = 0;
+    Object.keys(s_players).forEach(function (id) {
+        if (s_players[id].playerId === socket.id) {
+        } else {
 
-    // wrap ellipse if over bounds
-    if(xpos > 800) { xpos = 0; }
-    if(xpos < 0) { xpos = 800; }
-    if(ypos > 600) { ypos = 0; }
-    if(ypos < 0) { ypos = 600; }
+            console.log('player /// ' + s_players[id].nickname);
+            if (s_players[id].nickname != undefined) {
+                players[i] = {
+                    playerId: i,
+                    nickname: s_players[id].nickname,
+                    avatar: s_players[id].avatar,
+                    selection: s_players[id].selection,
+                    points: s_players[id].points,
+                    position: positions[i]
+                };
+                i++;
+            }
+        }
+    });
+}
 
-    // draw ellipse
-    fill(0);
-    ellipse(xpos, ypos, 25, 25);
+function updateScreen() {
+    background(0, 0, 51);
 
-    var data = {
-        x: xpos,
-        y: ypos,
-        r: r,
-        g: g,
-        b: b
+    ShowAssignmentText("Level 1: Make a circle");
+    ShowAssignmentGrid();
+
+    var pos = 100;
+    for (var i = 0; i < players.length; i++) {
+        ShowPlayer(pos, players[i].nickname, players[i].avatar, players[i].points);
+        ShowCubeSelection(i, players[i].nickname, players[i].avatar, players[i].selection);
+        ShowPlayerInGrid(players[i].avatar, players[i].position);
+        pos += 85;
+    }
+}
+
+function updatePlayerPoints() {
+
+    for (var i = 0; i < players.length; i++) {
+        if (players[i].selection === selections[i]) {
+            var p = players[i].points;
+            players[i].points = p + 1;
+        }
     }
 
-    socket.emit('playerDraw', data);
 }
 
-function newDrawing(data) {
+
+function ShowAssignmentText(message) {
+
+    fill(255);
+    textSize(35);
+    text(message, 500, 70);
+}
+
+function ShowAssignmentGrid() {
+
+    fill(255, 255, 255, 50);
+
+    for (var i = 0; i < positions.length; i++) {
+
+        var posx = positions[i][0];
+        var posy = positions[i][1];
+        rect(posx, posy, 250, 250);
+    }
+
+}
+
+function ShowPlayerInGrid(playerAvatar, position) {
+
+    var posx = position[0];
+    var posy = position[1];
+
+
+    switch (playerAvatar) {
+        case "AvatarA":
+            fill(255, 13, 192);
+            rect(posx, posy, 30, 30);
+            break;
+        case "AvatarB":
+            fill(15, 243, 64);
+            rect(posx, posy, 30, 30);
+            break;
+        case "AvatarC":
+            fill(11, 248, 234);
+            rect(posx, posy, 30, 30);
+            break;
+        case "AvatarD":
+            fill(11, 126, 248);
+            rect(posx, posy, 30, 30);
+            break;
+    }
+}
+
+function ShowCubeSelection(index, playerName, playerAvatar, selection) {
+
+    if (selection == "none") return;
+
+    console.log("ShowCubeSelection " + selection);
+    var posx = positions[index][0];
+    var posy = positions[index][1];
+
+    var img;
+    switch (selection) {
+        case "Back":
+            img = img1;
+            break;
+        case "Front":
+            img = img2;
+            break;
+        case "Left":
+            img = img3;
+            break;
+        case "Right":
+            img = img4;
+            break;
+        case "Top":
+            img = img5;
+            break;
+        case "Bottom":
+            img = img6;
+            break;
+    }
+
+
+
+    if (img != null) {
+        image(img, posx, posy);
+    }
+
+}
+
+
+function ShowPlayer(posY, playerName, playerAvatar, points) {
+
+    fill(255, 255, 255, 50);
     noStroke();
-    fill(data.r, data.g, data.b);
-    ellipse(data.x, data.y, 36, 36);
+    rect(0, posY, 400, 80);
+
+    fill(255);
+    textSize(30);
+    text(playerName, 100, posY + 50);
+    fill(255, 223, 60);
+    text(points + " xp", 320, posY + 50);
+
+    switch (playerAvatar) {
+        case "AvatarA":
+            fill(255, 13, 192);
+            break;
+        case "AvatarB":
+            fill(15, 243, 64);
+            break;
+        case "AvatarC":
+            fill(11, 248, 234);
+            break;
+        case "AvatarD":
+            fill(11, 126, 248);
+            break;
+    }
+    rect(0, posY, 80, 80);
 }
-
-// function mouseDragged() {
-
-//     noStroke();
-//     fill(0);
-//     ellipse(mouseX, mouseY, 36,36);
-
-//     var data = {
-//         x: mouseX,
-//         y: mouseY,
-//         r: r,
-//         g: g,
-//         b: b
-//     }
-
-//     socket.emit('playerDraw', data);
-
-// }
-
-// accelerometer Data
-window.addEventListener('devicemotion', function(e) 
-{
-    console.log(" ///// devicemotion /////// " );
-  // get accelerometer values
-  x = parseInt(e.accelerationIncludingGravity.x);
-  y = parseInt(e.accelerationIncludingGravity.y);
-  z = parseInt(e.accelerationIncludingGravity.z); 
-});

@@ -103,7 +103,7 @@ function updatePlayerPoints() {
 
     for (var i = 0; i < players.length; i++) {
         if (players[i].selection === selections[i]) {
-            var p = players[i].points;
+            var p = players[i].points || 0;
             players[i].points = p + 1;
         }
     }

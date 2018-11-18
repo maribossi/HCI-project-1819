@@ -24,34 +24,34 @@ function setup() {
 
     background(0, 0, 51);
 
-    for (var i = 0; i < 4; i++) {
-        players[i] = {
-            playerId: i,
-            nickname: nicknames[i],
-            avatar: avatars[i],
-            selection: selections[i+1],
-            position: positions[i],
-            points: 0
-        };
-    }
+//     for (var i = 0; i < 4; i++) {
+//         players[i] = {
+//             playerId: i,
+//             nickname: nicknames[i],
+//             avatar: avatars[i],
+//             selection: selections[i+1],
+//             position: positions[i],
+//             points: 0
+//         };
+//     }
 
-    updatePlayerPoints();
-    updateScreen();
+//     updatePlayerPoints();
+//     updateScreen();
 
 
 
-    // socket = io.connect();
-    // socket.on('connected', function onServerConnected(data) {
-    //     if (data === socket.id) {
-    //         console.log("this is me");
-    //     } else {
-    //         console.log("other client");
-    //     }
-    // });
+    socket = io.connect();
+    socket.on('connected', function onServerConnected(data) {
+        if (data === socket.id) {
+            console.log("this is me");
+        } else {
+            console.log("other client");
+        }
+    });
 
-    // socket.on('playerLogin', handleSocketEvent);
-    // socket.on('gameStarted', handleSocketEvent);
-    // socket.on('playerCubeSelection', handleSocketEvent);
+    socket.on('playerLogin', handleSocketEvent);
+    socket.on('gameStarted', handleSocketEvent);
+    socket.on('playerCubeSelection', handleSocketEvent);
 
 }
 

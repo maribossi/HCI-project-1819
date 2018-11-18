@@ -11,12 +11,12 @@ var positions = [[500, 100], [755, 100], [500, 355], [755, 355]];
 
 
 function preload() {
-    img1 = loadImage('images/cube1.png');
-    img2 = loadImage('images/cube2.png');
-    img3 = loadImage('images/cube3.png');
-    img4 = loadImage('images/cube4.png');
-    img5 = loadImage('images/cube5.png');
-    img6 = loadImage('images/cube6.png');
+    img1 = loadImage('../images/cube1.png');
+    img2 = loadImage('../images/cube2.png');
+    img3 = loadImage('../images/cube3.png');
+    img4 = loadImage('../images/cube4.png');
+    img5 = loadImage('../images/cube5.png');
+    img6 = loadImage('../images/cube6.png');
 }
 
 function setup() {
@@ -24,34 +24,34 @@ function setup() {
 
     background(0, 0, 51);
 
-    // for (var i = 0; i < 4; i++) {
-    //     players[i] = {
-    //         playerId: i,
-    //         nickname: nicknames[i],
-    //         avatar: avatars[i],
-    //         selection: selections[i+1],
-    //         position: positions[i],
-    //         points: 0
-    //     };
-    // }
+    for (var i = 0; i < 4; i++) {
+        players[i] = {
+            playerId: i,
+            nickname: nicknames[i],
+            avatar: avatars[i],
+            selection: selections[i+1],
+            position: positions[i],
+            points: 0
+        };
+    }
 
-    // updatePlayerPoints();
-    // updateScreen();
+    updatePlayerPoints();
+    updateScreen();
 
 
 
-    socket = io.connect();
-    socket.on('connected', function onServerConnected(data) {
-        if (data === socket.id) {
-            console.log("this is me");
-        } else {
-            console.log("other client");
-        }
-    });
+    // socket = io.connect();
+    // socket.on('connected', function onServerConnected(data) {
+    //     if (data === socket.id) {
+    //         console.log("this is me");
+    //     } else {
+    //         console.log("other client");
+    //     }
+    // });
 
-    socket.on('playerLogin', handleSocketEvent);
-    socket.on('gameStarted', handleSocketEvent);
-    socket.on('playerCubeSelection', handleSocketEvent);
+    // socket.on('playerLogin', handleSocketEvent);
+    // socket.on('gameStarted', handleSocketEvent);
+    // socket.on('playerCubeSelection', handleSocketEvent);
 
 }
 

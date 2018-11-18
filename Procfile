@@ -1,1 +1,1 @@
-web: node socket.io
+worker: node socket.io

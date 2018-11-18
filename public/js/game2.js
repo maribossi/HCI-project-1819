@@ -29,7 +29,7 @@ function setup() {
     //         playerId: i,
     //         nickname: nicknames[i],
     //         avatar: avatars[i],
-    //         selection: selections[i],
+    //         selection: selections[i+1],
     //         position: positions[i],
     //         points: 0
     //     };

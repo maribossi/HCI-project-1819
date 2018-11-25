@@ -23,11 +23,10 @@ io.on('connection', function (socket) {
         playerId: socket.id
     };
     console.log('a user connected ' + Object.keys(players).length);
-    io.emit('connected', socket.id);
+    io.emit('connected', players);
 
     socket.on('player login', function (data) {
         // we tell the client to execute 'new message'
-        console.log('player cube selection for ' + data.nickname);
         players[socket.id] = {
             playerId: socket.id,
             nickname: data.nickname,
@@ -42,9 +41,6 @@ io.on('connection', function (socket) {
 
     socket.on('player cube selection', function (data) {
         // we tell the client to execute 'new message'
-        
-        console.log('player cube selection for ' + data.nickname);
-        console.log('player cube selection for ' + data.selection);
         players[socket.id] = {
             playerId: socket.id,
             nickname: data.nickname,
@@ -60,13 +56,35 @@ io.on('connection', function (socket) {
         io.emit('gameStarted', players);
     });
 
+    socket.on('game completed', function () {
+        console.log('game completed');
+        io.emit('gameCompleted', players);
+    });
+
+    socket.on('level completed', function (data) {
+
+        for(var i = 0; i < data.length; i++)
+        {
+            var pId = data[i].playerId;
+            players[pId] = {
+                playerId: data[i].playerId,
+                nickname: data[i].nickname,
+                avatar: data[i].avatar,
+                selection: data[i].selection,
+                points: data[i].points
+            };
+        }
+        
+        io.emit('levelCompleted', players);
+    });
+
     // when a player disconnects, remove them from our players object
     socket.on('disconnect', function () {
         // remove this player from our players object
         delete players[socket.id];
         console.log('user disconnected ' + Object.keys(players).length);
         // emit a message to all players to remove this player
-        io.emit('disconnect', socket.id);
+        io.emit('disconnect', players);
     });
 });
 

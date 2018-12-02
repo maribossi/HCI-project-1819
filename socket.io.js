@@ -17,6 +17,7 @@ app.get('/', function (req, res) {
 
 var players = {};
 
+
 io.on('connection', function (socket) {
 
     players[socket.id] = {
@@ -24,6 +25,11 @@ io.on('connection', function (socket) {
     };
     console.log('a user connected ' + Object.keys(players).length);
     io.emit('connected', players);
+
+    socket.on('join', function () {
+        console.log('///// player joined ///////');
+        io.to(socket.id).emit('joined');
+    });
 
     socket.on('player login', function (data) {
         // we tell the client to execute 'new message'
@@ -58,11 +64,13 @@ io.on('connection', function (socket) {
 
     socket.on('game completed', function () {
         console.log('game completed');
+        currentlevel = 1;
         io.emit('gameCompleted', players);
     });
 
     socket.on('level completed', function (data) {
 
+        
         for(var i = 0; i < data.length; i++)
         {
             var pId = data[i].playerId;
@@ -70,8 +78,9 @@ io.on('connection', function (socket) {
                 playerId: data[i].playerId,
                 nickname: data[i].nickname,
                 avatar: data[i].avatar,
-                selection: data[i].selection,
-                points: data[i].points
+                selection: "none",
+                points: 0
+                //points: data[i].points
             };
         }
         

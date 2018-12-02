@@ -11,7 +11,8 @@ class Introscreen {
 
         createCanvas(windowWidth, windowHeight);
         background(0, 35, 90);
-        image(this.bg, windowWidth - 1200, windowHeight - 700);
+        //image(this.bg, windowWidth - 1200, windowHeight - 700);
+        image(this.bg, windowWidth - 1200, 0);
 
         //make the placeholders
         var posx = windowWidth/2 - 560;
@@ -55,13 +56,14 @@ class Introscreen {
 
     showText(level) {
 
-        var dist = 380;
+        var dist = 350;
 
         if(level === 1)
         {
             this.displayTitle("Welcome to WE.Screen!");
             this.displaySubtitle("Waiting for 4 players to join the game.", windowHeight/5.5+dist);
-            this.displaySubtitle("To play this game collect pieces of a puzzle by sarching the room in AR.", windowHeight/5.5+dist+50);
+            this.displaySubtitle("When the game starts, walk to the middle of the room and click on the marker in AR.", windowHeight/5.5+dist+50);
+            this.displaySubtitle("Then search for pieces of the puzzle in the room and click on them.", windowHeight/5.5+dist+80);
         }
         if(level === 2)
         {
@@ -72,7 +74,7 @@ class Introscreen {
         if(level === 3)
         {
             this.displayTitle("Level 2 completed!");
-            this.displaySubtitle("End of the game.", wwindowHeight/5.5+dist);
+            this.displaySubtitle("End of the game.", windowHeight/5.5+dist);
         }
     }
 

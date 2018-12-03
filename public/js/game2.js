@@ -36,7 +36,7 @@ var gamestarted = false;
 
 
 function preload() {
-    bg = loadImage('../images/background.jpg');
+    bg = loadImage('../images/background_big.png');
     img1 = loadImage('../images/cube1.png');
     img2 = loadImage('../images/cube2.png');
     img3 = loadImage('../images/cube3.png');

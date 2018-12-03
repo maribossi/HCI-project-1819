@@ -12,7 +12,9 @@ class Introscreen {
         createCanvas(windowWidth, windowHeight);
         background(0, 35, 90);
         //image(this.bg, windowWidth - 1200, windowHeight - 700);
-        image(this.bg, windowWidth - 1200, 0);
+        var scale = windowWidth/this.bg.width;
+        image(this.bg, 0, 0, windowWidth, this.bg.height*scale);
+        
 
         //make the placeholders
         var posx = windowWidth/2 - 560;

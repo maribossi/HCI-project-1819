@@ -36,7 +36,6 @@ io.on('connection', function (socket) {
         players[socket.id] = {
             playerId: socket.id,
             nickname: data.nickname,
-            avatar: data.avatar,
             selection: "none",
             points: 0
         };
@@ -45,12 +44,32 @@ io.on('connection', function (socket) {
         io.emit('playerLogin', players);
     });
 
+    socket.on('player score updated', function (data) {
+        // we tell the client to execute 'new message']
+        
+
+        for(var i = 0; i < data.length; i++)
+        {
+            var pId = data[i].playerId;
+            players[pId] = {
+                playerId: data[i].playerId,
+                nickname: data[i].nickname,
+                selection: data[i].selection,
+                points: data[i].points
+            };
+
+            console.log('///// player score updated //////' + data[i].points);
+        }
+        
+        io.emit('playerScoreUpdated', players);
+    });
+
     socket.on('player cube selection', function (data) {
-        // we tell the client to execute 'new message'
+        // we tell the client to execute 'new message']
+
         players[socket.id] = {
             playerId: socket.id,
             nickname: data.nickname,
-            avatar: players[socket.id].avatar,
             selection: data.selection,
             points: players[socket.id].points
         };
@@ -77,7 +96,6 @@ io.on('connection', function (socket) {
             players[pId] = {
                 playerId: data[i].playerId,
                 nickname: data[i].nickname,
-                avatar: data[i].avatar,
                 selection: "none",
                 points: 0
                 //points: data[i].points

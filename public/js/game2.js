@@ -14,6 +14,8 @@ var img1_cg, img2_cg, img3_cg, img4_cg, img5_cg, img6_cg;
 var success_sound;
 var level_sound;
 
+const LEVEL_DURATION = 180;
+
 var players = [];
 var currentplayer = {};
 var maxlevel = 4;
@@ -118,6 +120,7 @@ function preload() {
 function setup() {
     createCanvas(windowWidth, windowHeight);
     background(0, 35, 90);
+    frameRate(60);
 
     s = (windowHeight / 2.5);
     m = s / 50;
@@ -180,14 +183,17 @@ function handlePlayerLoginOrLogout(s_players) {
 }
 
 function handleGameStarted(s_players) {
+
     console.log("handleGameStarted");
     gamestarted = true;
     updatePlayers(s_players);
     updateGameScreen();
+    gamescreen.setDuration(LEVEL_DURATION);
 }
 
 function handleLevelCompleted(s_players) {
     gamestarted = false;
+    gamescreen.setDuration(0);
     introscreen.display(bg, currentlevel);
     introscreen.showAllPlayers(players, currentlevel);
 }
@@ -200,6 +206,10 @@ function handleGameCompleted(s_players) {
 }
 
 function draw() {
+    if(gamestarted){
+        gamescreen.draw();
+    }
+    
 }
 // this is used in debugmode - when playing from the browser
 function keyPressed() {
@@ -349,9 +359,8 @@ function updatePlayers(s_players) {
 
 function updateGameScreen() {
 
-    gamescreen.display(bg, currentlevel);
+    gamescreen.display(bg, currentlevel, 120);
     introscreen.removeAnim();
-
     gamescreen.update(players);
 
 }

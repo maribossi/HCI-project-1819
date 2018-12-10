@@ -7,7 +7,57 @@ class Gamescreen {
         this.avatars = avatars;
         this.positions = positions;
         this.bg;
+
+        this.secs = 0;
+        this.duration;
+        this.totaltime;
+
     }
+
+    setDuration (dur) {
+        this.totaltime = this.duration = dur;
+    }
+
+    draw() {
+
+
+        // //
+        var d = new Date();
+
+        if (d.getSeconds() != this.secs) {
+            this.secs = d.getSeconds();
+
+            this.duration -= 1;
+            if (this.duration >= 0) {
+                
+                push();
+                translate(200, 540);
+                fill(0, 35, 90);
+                noStroke();
+                rectMode(CENTER);
+                ellipse(0, 0, 145);
+            
+                fill(255);
+                noStroke();
+                textSize(35);
+                textAlign(CENTER);
+                text(this.duration, 0, 10);
+
+                var p_s = this.duration/this.totaltime + .001;
+                noFill();
+                stroke(255);
+                strokeCap(SQUARE);
+                strokeWeight(4);
+                arc(0, 0, 140, 140, 0, p_s * 2 * PI);
+                pop();
+            }
+
+        }
+
+    }
+
+
+
 
     drawBackground() {
 
@@ -16,7 +66,6 @@ class Gamescreen {
         var scale = windowWidth / this.bg.width;
         image(this.bg, 0, 0, windowWidth, this.bg.height * scale);
 
-
     }
 
     ShowAssignmentGrid() {
@@ -24,7 +73,7 @@ class Gamescreen {
         fill(255, 255, 255, 50);
         noStroke();
 
-       var sw = windowHeight/2.5;
+        var sw = windowHeight / 2.5;
 
         for (var i = 0; i < positions.length; i++) {
 
@@ -72,7 +121,7 @@ class Gamescreen {
             this.displayTitle("Level 4: Make a basic geometric shape");
         }
 
-    
+
     }
 
 
@@ -102,12 +151,12 @@ class Gamescreen {
         fill(255, 223, 60);
         //text(points + " found", 300, posY + 45);
 
-        if(points == 1) {
+        if (points == 1) {
             text("Yeah!", 325, posY + 45);
-            
+
         }
-        
-        
+
+
         switch (playerAvatar) {
             case "AvatarA":
                 fill(this.colors[0]);
@@ -158,7 +207,7 @@ class Gamescreen {
             case "RP-Right": img = img4_rp; break;
             case "RP-Top": img = img5_rp; break;
             case "RP-Bottom": img = img6_rp; break;
-            
+
             case "G1-Back": img = img1_cg; break;
             case "G2-Back": img = img2_cg; break;
             case "G3-Back": img = img4_cg; break;
@@ -212,11 +261,11 @@ class Gamescreen {
             case "M4-Bottom": img = img5_sp; break;
         }
 
-        
+
 
         if (img != null) {
-            var sw = windowHeight/2.5;
-            image(img, posx, posy,sw,sw);
+            var sw = windowHeight / 2.5;
+            image(img, posx, posy, sw, sw);
         }
 
     }

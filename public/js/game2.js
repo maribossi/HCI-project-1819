@@ -19,7 +19,7 @@ const LEVEL_DURATION = 180;
 var players = [];
 var currentplayer = {};
 var maxlevel = 4;
-var currentlevel = 3;
+var currentlevel = 1;
 
 var colors = [[211, 42, 47], [245, 127, 34], [251, 190, 84], [98, 210, 159]];
 

@@ -456,8 +456,8 @@ function updatePlayerPoints() {
 
     }
 
-    for (var l = 0; l < players.length; l++) {
-        console.log ("player has points " + players[i]);
+    for (var i = 0; i < players.length; i++) {
+        console.log ("// player has points // " + players[i].points);
     }
 
 

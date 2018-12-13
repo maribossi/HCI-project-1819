@@ -16,7 +16,7 @@ app.get('/', function (req, res) {
 });
 
 var players = {};
-var currentlevel = 1;
+var currentlevel = 2;
 
 
 io.on('connection', function (socket) {

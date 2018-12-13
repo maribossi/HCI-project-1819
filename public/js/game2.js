@@ -320,6 +320,7 @@ function handleScoreUpdated(s_players) {
         var count = 0;
         for (var i = 0; i < players.length; i++) {
             count += players[i].points;
+            console.log ("/// handleScoreUpdated ///" + count);
         }
 
         if (count == 4) {
@@ -440,6 +441,8 @@ function updatePlayerPoints() {
         for (var k = 0; k < t_sels.length; k++) {
             var sum = t_sels[k].reduce((a, b) => a + b, 0);
 
+            console.log ("/// sum ///" + sum);
+
             if (sum > 1 && sum > total) {
                 total = sum;
                 for (var l = 0; l < t_sels[k].length; l++) {
@@ -451,6 +454,10 @@ function updatePlayerPoints() {
             }
         }
 
+    }
+
+    for (var l = 0; l < players.length; l++) {
+        console.log ("player has points " + players[i]);
     }
 
 

@@ -178,6 +178,8 @@ class Gamescreen {
 
         if (selection == "none") return;
 
+        console.log("ShowCubeSelection " + selection);
+
         var posx = this.positions[index][0];
         var posy = this.positions[index][1];
 
@@ -233,32 +235,35 @@ class Gamescreen {
             case "G3-Bottom": img = img6_rg; break;
             case "G4-Bottom": img = img5_rg; break;
 
-            case "M1-Front": img = img6_rg; break;
-            case "M2-Front": img = img3_rw; break;
-            case "M3-Front": img = img2_rw; break;
-            case "M4-Front": img = img5_rg; break;
             case "M1-Back": img = img1_rg; break;
             case "M2-Back": img = img2_rg; break;
-            case "M3-Back": img = img4_rg; break;
-            case "M4-Back": img = img3_rg; break;
+            case "M3-Back": img = img3_rg; break;
+            case "M4-Back": img = img4_rg; break;
+
+            case "M1-Front": img = img5; break;
+            case "M2-Front": img = img2_cw; break;
+            case "M3-Front": img = img4_cw; break;
+            case "M4-Front": img = img6; break;
+
             case "M1-Left": img = img1; break;
             case "M2-Left": img = img2; break;
-            case "M3-Left": img = img4; break;
-            case "M4-Left": img = img3; break;
+            case "M3-Left": img = img3; break;
+            case "M4-Left": img = img4; break;
 
-            case "M1-Right": img = img6; break;
-            case "M2-Right": img = img3_cw; break;
-            case "M3-Right": img = img2_cw; break;
-            case "M4-Right": img = img5; break;
+            case "M1-Right": img = img5_sp; break;
+            case "M2-Right": img = img2_sw; break;
+            case "M3-Right": img = img3_sw; break;
+            case "M4-Right": img = img6_sp; break;
 
             case "M1-Top": img = img1_sp; break;
             case "M2-Top": img = img2_sp; break;
-            case "M3-Top": img = img4_sp; break;
-            case "M4-Top": img = img3_sp; break;
-            case "M1-Bottom": img = img6_sp; break;
-            case "M2-Bottom": img = img3_sw; break;
-            case "M3-Bottom": img = img2_sw; break;
-            case "M4-Bottom": img = img5_sp; break;
+            case "M3-Top": img = img3_sp; break;
+            case "M4-Top": img = img4_sp; break;
+
+            case "M1-Bottom": img = img5_rg; break;
+            case "M2-Bottom": img = img2_rw; break;
+            case "M3-Bottom": img = img3_rw; break;
+            case "M4-Bottom": img = img6_rg; break;
         }
 
 

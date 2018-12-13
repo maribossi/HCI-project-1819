@@ -16,6 +16,7 @@ app.get('/', function (req, res) {
 });
 
 var players = {};
+var currentlevel = 1;
 
 
 io.on('connection', function (socket) {
@@ -27,8 +28,7 @@ io.on('connection', function (socket) {
     io.emit('connected', players);
 
     socket.on('join', function () {
-        console.log('///// player joined ///////');
-        io.to(socket.id).emit('joined');
+        io.to(socket.id).emit('joined', currentlevel);
     });
 
     socket.on('player login', function (data) {
@@ -57,8 +57,6 @@ io.on('connection', function (socket) {
                 selection: data[i].selection,
                 points: data[i].points
             };
-
-            console.log('///// player score updated //////' + data[i].points);
         }
         
         io.emit('playerScoreUpdated', players);
@@ -89,7 +87,7 @@ io.on('connection', function (socket) {
 
     socket.on('level completed', function (data) {
 
-        
+        currentlevel ++;
         for(var i = 0; i < data.length; i++)
         {
             var pId = data[i].playerId;

@@ -18,8 +18,8 @@ const LEVEL_DURATION = 180;
 
 var players = [];
 var currentplayer = {};
-var maxlevel = 4;
-var currentlevel = 1;
+var maxlevel = 1;
+var currentlevel = 4;
 
 var colors = [[211, 42, 47], [245, 127, 34], [251, 190, 84], [98, 210, 159]];
 
@@ -38,12 +38,12 @@ var selections_level3 = [["G1-Back", "G2-Back", "G4-Back", "G3-Back"],
 ["G1-Left", "G2-Left", "G4-Left", "G3-Left"],
 ["G1-Top", "G2-Top", "G4-Top", "G3-Top"]];
 
-var selections_level4 = [["M1-Back", "M2-Back", "M4-Back", "M3-Back"],
-["M1-Left", "M2-Left", "M4-Left", "M3-Left"],
-["M1-Top", "M2-Top", "M4-Top", "M3-Top"],
-["M4-Front", "M3-Front", "M2-Front", "M1-Front"],
-["M4-Right", "M3-Right", "M2-Right", "M1-Right"],
-["M4-Bottom", "M3-Bottom", "M2-Bottom", "M1-Bottom"]];
+var selections_level4 = [["M1-Back", "M2-Back", "M3-Back", "M4-Back"],
+["M1-Front", "M2-Front", "M3-Front", "M4-Front"],
+["M1-Left", "M2-Left", "M3-Left", "M4-Left"],
+["M1-Right", "M2-Right", "M3-Right", "M4-Right"],
+["M1-Top", "M2-Top", "M3-Top", "M4-Top"],
+["M1-Bottom", "M2-Bottom", "M3-Bottom", "M4-Bottom"]];
 
 var s;
 var m;
@@ -111,7 +111,7 @@ function preload() {
     img2_sw = loadImage('../images/sw-cube2.jpg');
     img3_sw = loadImage('../images/sw-cube3.jpg');
     img2_cw = loadImage('../images/cw-cube2.jpg');
-    img3_cw = loadImage('../images/cw-cube4.jpg');
+    img4_cw = loadImage('../images/cw-cube4.jpg');
 
 
 
@@ -156,12 +156,14 @@ function setup() {
                 if (debugmode && index < 6) {
                     currentplayer.avatar = avatars[index - 2];
                     currentplayer.nickname = nicknames[index - 2];
+                    //socket.emit("join");
                     socket.emit("player login", currentplayer);
                 }
             }
         }
     });
 
+    //socket.on('joined', handlePlayerJoined);
     socket.on('playerLogin', handlePlayerLoginOrLogout);
     socket.on('gameStarted', handleGameStarted);
     socket.on('playerCubeSelection', handleSocketEvent);
@@ -170,6 +172,12 @@ function setup() {
     socket.on('gameCompleted', handleGameCompleted);
     socket.on('disconnect', handlePlayerLoginOrLogout);
 }
+
+// function handlePlayerJoined(level) {
+//     currentlevel = level;
+//     console.log("handlePlayerJoined " + level);
+
+// }
 
 function handlePlayerLoginOrLogout(s_players) {
 
@@ -425,6 +433,8 @@ function updatePlayerPoints() {
         }
 
         var total = 0;
+
+        console.log ("selections level 4 " + t_sels)
 
         //count the highest points
         for (var k = 0; k < t_sels.length; k++) {

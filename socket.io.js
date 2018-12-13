@@ -57,6 +57,8 @@ io.on('connection', function (socket) {
                 selection: data[i].selection,
                 points: data[i].points
             };
+
+            console.log ("points for player " + data[i].points)
         }
         
         io.emit('playerScoreUpdated', players);
@@ -100,7 +102,6 @@ io.on('connection', function (socket) {
                 points: 0
                 //points: data[i].points
             };
-
 
         }
         

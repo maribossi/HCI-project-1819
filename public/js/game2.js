@@ -448,8 +448,8 @@ function updatePlayerPoints() {
                 for (var l = 0; l < t_sels[k].length; l++) {
                     if (players[l].points == 0 && t_sels[k][l] == 1) {
                         success_sound.play();
-                        players[l].points = t_sels[k][l];
                     }
+                    players[l].points = t_sels[k][l];
                 }
             }
         }

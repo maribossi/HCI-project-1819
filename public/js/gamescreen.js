@@ -178,8 +178,6 @@ class Gamescreen {
 
         if (selection == "none") return;
 
-        console.log("ShowCubeSelection " + selection);
-
         var posx = this.positions[index][0];
         var posy = this.positions[index][1];
 

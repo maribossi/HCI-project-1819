@@ -18,7 +18,7 @@ const LEVEL_DURATION = 180;
 
 var players = [];
 var currentplayer = {};
-var maxlevel = 1;
+var maxlevel = 4;
 var currentlevel = 1;
 
 var colors = [[211, 42, 47], [245, 127, 34], [251, 190, 84], [98, 210, 159]];
@@ -465,7 +465,7 @@ function gotoNextLevel() {
         currentlevel = 1;
     } else {
         currentlevel++;
-        socket.emit("level completed", players);
+        socket.emit("level completed", players, currentlevel);
     }
 }
 

@@ -85,9 +85,11 @@ io.on('connection', function (socket) {
         io.emit('gameCompleted', players);
     });
 
-    socket.on('level completed', function (data) {
+    socket.on('level completed', function (data, lvl) {
 
-        currentlevel ++;
+        console.log('level completed' + lvl);
+        currentlevel = lvl;
+        
         for(var i = 0; i < data.length; i++)
         {
             var pId = data[i].playerId;
@@ -98,6 +100,8 @@ io.on('connection', function (socket) {
                 points: 0
                 //points: data[i].points
             };
+
+
         }
         
         io.emit('levelCompleted', players);

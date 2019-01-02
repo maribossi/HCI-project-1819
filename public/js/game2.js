@@ -65,25 +65,36 @@ function preload() {
     img3 = loadImage('../images/cube3.png');
     img4 = loadImage('../images/cube4.png');
     img5 = loadImage('../images/cube5.png');
-    img6 = loadImage('../images/cube6.png');
+    img6 = loadImage('../images/cube6.jpg');
+    img7 = loadImage('../images/cube7.jpg');
+    img8 = loadImage('../images/cube8.png');
+
     img1_cp = loadImage('../images/cp-cube1.png');
     img2_cp = loadImage('../images/cp-cube2.png');
     img3_cp = loadImage('../images/cp-cube3.png');
     img4_cp = loadImage('../images/cp-cube4.png');
     img5_cp = loadImage('../images/cp-cube5.png');
     img6_cp = loadImage('../images/cp-cube6.png');
+    img7_cp = loadImage('../images/cp-cube7.png');
+    img8_cp = loadImage('../images/cp-cube8.png');
+
     img1_sp = loadImage('../images/sp-cube1.png');
     img2_sp = loadImage('../images/sp-cube2.png');
     img3_sp = loadImage('../images/sp-cube3.png');
     img4_sp = loadImage('../images/sp-cube4.png');
     img5_sp = loadImage('../images/sp-cube5.png');
     img6_sp = loadImage('../images/sp-cube6.png');
+    img7_sp = loadImage('../images/sp-cube7.png');
+    img8_sp = loadImage('../images/sp-cube8.png');
+    
     img1_rp = loadImage('../images/rp-cube1.png');
     img2_rp = loadImage('../images/rp-cube2.png');
     img3_rp = loadImage('../images/rp-cube3.png');
     img4_rp = loadImage('../images/rp-cube4.png');
     img5_rp = loadImage('../images/rp-cube5.png');
     img6_rp = loadImage('../images/rp-cube6.png');
+    img7_rp = loadImage('../images/rp-cube7.png');
+    img8_rp = loadImage('../images/rp-cube8.png');
 
     img1_cg = loadImage('../images/cg-cube1.jpg');
     img2_cg = loadImage('../images/cg-cube2.jpg');
@@ -91,6 +102,8 @@ function preload() {
     img4_cg = loadImage('../images/cg-cube4.jpg');
     img5_cg = loadImage('../images/cg-cube5.jpg');
     img6_cg = loadImage('../images/cg-cube6.jpg');
+    img7_cg = loadImage('../images/cg-cube7.jpg');
+    img8_cg = loadImage('../images/cg-cube8.jpg');
 
     img1_rg = loadImage('../images/rg-cube1.jpg');
     img2_rg = loadImage('../images/rg-cube2.jpg');
@@ -98,6 +111,8 @@ function preload() {
     img4_rg = loadImage('../images/rg-cube4.jpg');
     img5_rg = loadImage('../images/rg-cube5.jpg');
     img6_rg = loadImage('../images/rg-cube6.jpg');
+    img7_rg = loadImage('../images/rg-cube7.jpg');
+    img8_rg = loadImage('../images/rg-cube8.jpg');
 
     img1_sg = loadImage('../images/sg-cube1.jpg');
     img2_sg = loadImage('../images/sg-cube2.jpg');
@@ -105,15 +120,8 @@ function preload() {
     img4_sg = loadImage('../images/sg-cube4.jpg');
     img5_sg = loadImage('../images/sg-cube5.jpg');
     img6_sg = loadImage('../images/sg-cube6.jpg');
-
-    img2_rw = loadImage('../images/rw-cube2.jpg');
-    img3_rw = loadImage('../images/rw-cube3.jpg');
-    img2_sw = loadImage('../images/sw-cube2.jpg');
-    img3_sw = loadImage('../images/sw-cube3.jpg');
-    img2_cw = loadImage('../images/cw-cube2.jpg');
-    img4_cw = loadImage('../images/cw-cube4.jpg');
-
-
+    img7_sg = loadImage('../images/sg-cube7.jpg');
+    img8_sg = loadImage('../images/sg-cube8.jpg');
 
 }
 

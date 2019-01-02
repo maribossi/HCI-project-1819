@@ -188,48 +188,48 @@ class Gamescreen {
             case "Left": img = img3; break;
             case "Right": img = img4; break;
             case "Top": img = img5; break;
-            case "Bottom": img = img6; break;
+            case "Bottom": img = img8; break;
             case "CP-Back": img = img1_cp; break;
             case "CP-Front": img = img2_cp; break;
             case "CP-Left": img = img3_cp; break;
             case "CP-Right": img = img4_cp; break;
             case "CP-Top": img = img5_cp; break;
-            case "CP-Bottom": img = img6_cp; break;
+            case "CP-Bottom": img = img8_cp; break;
             case "SP-Back": img = img1_sp; break;
             case "SP-Front": img = img2_sp; break;
             case "SP-Left": img = img3_sp; break;
             case "SP-Right": img = img4_sp; break;
             case "SP-Top": img = img5_sp; break;
-            case "SP-Bottom": img = img6_sp; break;
+            case "SP-Bottom": img = img8_sp; break;
             case "RP-Back": img = img1_rp; break;
             case "RP-Front": img = img2_rp; break;
             case "RP-Left": img = img3_rp; break;
             case "RP-Right": img = img4_rp; break;
             case "RP-Top": img = img5_rp; break;
-            case "RP-Bottom": img = img6_rp; break;
+            case "RP-Bottom": img = img8_rp; break;
 
             case "G1-Back": img = img1_cg; break;
             case "G2-Back": img = img2_cg; break;
             case "G3-Back": img = img4_cg; break;
             case "G4-Back": img = img3_cg; break;
-            case "G1-Front": img = img6_cg; break;
-            case "G2-Front": img = img5_cg; break;
+            case "G1-Front": img = img8_cg; break;
+            case "G2-Front": img = img7_cg; break;
             case "G3-Front": img = img6_cg; break;
             case "G4-Front": img = img5_cg; break;
+            case "G1-Left": img = img1_sg; break;
+            case "G2-Left": img = img2_sg; break;
+            case "G3-Left": img = img3_sg; break;
+            case "G4-Left": img = img4_sg; break;
+            case "G1-Right": img = img8_sg; break;
+            case "G2-Right": img = img7_sg; break;
+            case "G3-Right": img = img6_sg; break;
+            case "G4-Right": img = img5_sg; break;
             case "G1-Top": img = img1_rg; break;
             case "G2-Top": img = img2_rg; break;
             case "G3-Top": img = img4_rg; break;
             case "G4-Top": img = img3_rg; break;
-            case "G1-Left": img = img3_sg; break;
-            case "G2-Left": img = img4_sg; break;
-            case "G3-Left": img = img1_sg; break;
-            case "G4-Left": img = img2_sg; break;
-            case "G1-Right": img = img6_sg; break;
-            case "G2-Right": img = img5_sg; break;
-            case "G3-Right": img = img6_sg; break;
-            case "G4-Right": img = img5_sg; break;
-            case "G1-Bottom": img = img6_rg; break;
-            case "G2-Bottom": img = img5_rg; break;
+            case "G1-Bottom": img = img8_rg; break;
+            case "G2-Bottom": img = img7_rg; break;
             case "G3-Bottom": img = img6_rg; break;
             case "G4-Bottom": img = img5_rg; break;
 
@@ -237,31 +237,26 @@ class Gamescreen {
             case "M2-Back": img = img2_rg; break;
             case "M3-Back": img = img3_rg; break;
             case "M4-Back": img = img4_rg; break;
-
             case "M1-Front": img = img5; break;
-            case "M2-Front": img = img2_cw; break;
-            case "M3-Front": img = img4_cw; break;
-            case "M4-Front": img = img6; break;
-
-            case "M1-Left": img = img1; break;
-            case "M2-Left": img = img2; break;
-            case "M3-Left": img = img3; break;
-            case "M4-Left": img = img4; break;
-
+            case "M2-Front": img = img6; break;
+            case "M3-Front": img = img7; break;
+            case "M4-Front": img = img8; break;
+            case "M1-Left": img = img4; break;
+            case "M2-Left": img = img3; break;
+            case "M3-Left": img = img2; break;
+            case "M4-Left": img = img1; break;
             case "M1-Right": img = img5_sp; break;
-            case "M2-Right": img = img2_sw; break;
-            case "M3-Right": img = img3_sw; break;
-            case "M4-Right": img = img6_sp; break;
-
-            case "M1-Top": img = img1_sp; break;
-            case "M2-Top": img = img2_sp; break;
-            case "M3-Top": img = img3_sp; break;
-            case "M4-Top": img = img4_sp; break;
-
+            case "M2-Right": img = img6_sp; break;
+            case "M3-Right": img = img7_sp; break;
+            case "M4-Right": img = img8_sp; break;
+            case "M1-Top": img = img4_sp; break;
+            case "M2-Top": img = img3_sp; break;
+            case "M3-Top": img = img2_sp; break;
+            case "M4-Top": img = img1_sp; break;
             case "M1-Bottom": img = img5_rg; break;
-            case "M2-Bottom": img = img2_rw; break;
-            case "M3-Bottom": img = img3_rw; break;
-            case "M4-Bottom": img = img6_rg; break;
+            case "M2-Bottom": img = img6_rg; break;
+            case "M3-Bottom": img = img7_rg; break;
+            case "M4-Bottom": img = img8_rg; break;
         }
 
 

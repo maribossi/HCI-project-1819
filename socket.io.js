@@ -114,6 +114,7 @@ io.on('connection', function (socket) {
         // remove this player from our players object
         delete players[socket.id];
         console.log('user disconnected ' + Object.keys(players).length);
+        if(Object.keys(players).length == 0)currentlevel = 1;
         // emit a message to all players to remove this player
         io.emit('disconnect', players);
     });

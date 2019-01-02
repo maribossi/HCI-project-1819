@@ -34,9 +34,9 @@ var avatars = ["AvatarA", "AvatarB", "AvatarC", "AvatarD"];
 var selections_level1 = ["Back", "Front", "Left", "Right"];
 var selections_level2 = ["SP-Back", "SP-Front", "SP-Left", "SP-Right"];
 
-var selections_level3 = [["G1-Back", "G2-Back", "G4-Back", "G3-Back"],
-["G1-Left", "G2-Left", "G4-Left", "G3-Left"],
-["G1-Top", "G2-Top", "G4-Top", "G3-Top"]];
+var selections_level3 = [["G1-Back", "G2-Back", "G3-Back", "G4-Back"],
+["G1-Left", "G2-Left", "G3-Left", "G4-Left"],
+["G1-Top", "G2-Top", "G3-Top", "G4-Top"]];
 
 var selections_level4 = [["M1-Back", "M2-Back", "M3-Back", "M4-Back"],
 ["M1-Front", "M2-Front", "M3-Front", "M4-Front"],
@@ -233,7 +233,7 @@ function draw() {
 function keyPressed() {
     if (!debugmode) return;
 
-    //console.log("//// keyPressed ///= " + keyCode);
+    console.log("//// keyPressed ///= " + keyCode);
 
     if (currentlevel === 4) {
 
@@ -417,6 +417,7 @@ function updatePlayerPoints() {
 
         var t_sels = [];
         var l_sels = [];
+        var prev_points = [];
 
         if (currentlevel == 3) {
             t_sels = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
@@ -430,6 +431,8 @@ function updatePlayerPoints() {
 
         for (var p = 0; p < players.length; p++) {
             var ps = players[p].selection;
+            prev_points[p] = players[p].points;
+            players[p].points = 0;
 
             for (var i = 0; i < l_sels.length; i++) {
 
@@ -445,7 +448,7 @@ function updatePlayerPoints() {
 
         var total = 0;
 
-        console.log ("selections level 4 = " + t_sels)
+        console.log ("selections level = " + t_sels)
 
         //count the highest points
         for (var k = 0; k < t_sels.length; k++) {
@@ -456,12 +459,10 @@ function updatePlayerPoints() {
             if (sum > 1 && sum > total) {
                 total = sum;
                 for (var l = 0; l < t_sels[k].length; l++) {
-                    console.log ("/// index ///" + l);
+                    
                     if(l < players.length)
                     {
-                        if (players[l].points == 0 && t_sels[k][l] == 1) {
-                            success_sound.play();
-                        }
+                        if (prev_points[l] == 0 && t_sels[k][l] == 1) success_sound.play();
                         players[l].points = t_sels[k][l];
 
                     }
@@ -472,9 +473,9 @@ function updatePlayerPoints() {
 
     }
 
-    // for (var i = 0; i < players.length; i++) {
-    //     console.log ("// player has points // " + players[i].points);
-    // }
+    for (var i = 0; i < players.length; i++) {
+        console.log ("player: " + players[i].nickname + " has points: " + players[i].points);
+    }
 
 
     socket.emit("player score updated", players);

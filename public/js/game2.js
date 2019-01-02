@@ -83,8 +83,8 @@ function preload() {
     img3_sp = loadImage('../images/sp-cube3.png');
     img4_sp = loadImage('../images/sp-cube4.png');
     img5_sp = loadImage('../images/sp-cube5.png');
-    img6_sp = loadImage('../images/sp-cube6.png');
-    img7_sp = loadImage('../images/sp-cube7.png');
+    img6_sp = loadImage('../images/sp-cube6.jpg');
+    img7_sp = loadImage('../images/sp-cube7.jpg');
     img8_sp = loadImage('../images/sp-cube8.png');
     
     img1_rp = loadImage('../images/rp-cube1.png');

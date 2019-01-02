@@ -28,7 +28,8 @@ io.on('connection', function (socket) {
     io.emit('connected', players);
 
     socket.on('join', function () {
-        io.to(socket.id).emit('joined', currentlevel);
+        //io.to(socket.id).emit('joined', currentlevel);
+        io.emit('joined', currentlevel);
     });
 
     socket.on('player login', function (data) {
@@ -58,7 +59,7 @@ io.on('connection', function (socket) {
                 points: data[i].points
             };
 
-            console.log ("points for player " + data[i].points)
+            //console.log ("points for player " + data[i].points)
         }
         
         io.emit('playerScoreUpdated', players);

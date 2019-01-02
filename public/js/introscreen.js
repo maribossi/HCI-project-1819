@@ -62,7 +62,7 @@ class Introscreen {
         var dist = 100;
        
         if (level === 1) {
-            this.displayTitle("Welcome to WE.Screen!");
+            this.displayTitle("Welcome to WE.screen!");
             this.displaySubtitle("Waiting for 4 players to join the game.", windowHeight / 5.5 + dist);
             this.displaySubtitle("When the game starts, walk to the middle of the room and click on the marker in AR.", windowHeight / 5.5 + dist + 50);
             this.displaySubtitle("Then search for pieces of the puzzle in the room and click on them.", windowHeight / 5.5 + dist + 100);

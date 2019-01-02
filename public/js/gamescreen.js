@@ -260,7 +260,6 @@ class Gamescreen {
         }
 
 
-
         if (img != null) {
             var sw = windowHeight / 2.5;
             image(img, posx, posy, sw, sw);

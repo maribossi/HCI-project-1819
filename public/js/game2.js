@@ -56,6 +56,7 @@ var debugmode = true;
 var gamestarted = false;
 
 
+
 function preload() {
     success_sound = loadSound('../sound/select-cube-success.mp3');
     level_sound = loadSound('../sound/level-completed.mp3');
@@ -130,6 +131,7 @@ function setup() {
     background(0, 35, 90);
     frameRate(60);
 
+
     s = (windowHeight / 2.5);
     m = s / 50;
     //py = (windowHeight / 2) - s + m / 2;
@@ -172,12 +174,14 @@ function setup() {
     });
 
     socket.on('joined', handlePlayerJoined);
+
+    
     
 }
 
 function handlePlayerJoined(level) {
     currentlevel = level;
-    console.log("handlePlayerJoined " + level);
+    //console.log("handlePlayerJoined " + level);
 
     socket.on('playerLogin', handlePlayerLoginOrLogout);
     socket.on('gameStarted', handleGameStarted);
@@ -202,7 +206,7 @@ function handlePlayerLoginOrLogout(s_players) {
 
 function handleGameStarted(s_players) {
 
-    console.log("handleGameStarted");
+    //console.log("handleGameStarted");
     gamestarted = true;
     updatePlayers(s_players);
     updateGameScreen();
@@ -433,14 +437,14 @@ function updatePlayerPoints() {
             var ps = players[p].selection;
             prev_points[p] = players[p].points;
             players[p].points = 0;
-
+            
             for (var i = 0; i < l_sels.length; i++) {
 
                 for (var j = 0; j < l_sels[i].length; j++) {
 
-                    var ts = l_sels[i][j];
+                    var ts = l_sels[i][p];
                     if (ts === ps) {
-                        t_sels[i][j] = 1;
+                        t_sels[i][p] = 1;
                     }
                 }
             }
@@ -448,13 +452,13 @@ function updatePlayerPoints() {
 
         var total = 0;
 
-        console.log ("selections level = " + t_sels)
+        //console.log ("selections level = " + t_sels)
 
         //count the highest points
         for (var k = 0; k < t_sels.length; k++) {
             var sum = t_sels[k].reduce((a, b) => a + b, 0);
 
-            console.log ("/// sum ///" + sum);
+            //console.log ("/// sum ///" + sum);
 
             if (sum > 1 && sum > total) {
                 total = sum;
@@ -462,7 +466,9 @@ function updatePlayerPoints() {
                     
                     if(l < players.length)
                     {
-                        if (prev_points[l] == 0 && t_sels[k][l] == 1) success_sound.play();
+                        if(document.hasFocus()){
+                            if (prev_points[l] == 0 && t_sels[k][l] == 1) success_sound.play();
+                        }
                         players[l].points = t_sels[k][l];
 
                     }
@@ -473,9 +479,9 @@ function updatePlayerPoints() {
 
     }
 
-    for (var i = 0; i < players.length; i++) {
-        console.log ("player: " + players[i].nickname + " has points: " + players[i].points);
-    }
+    // for (var i = 0; i < players.length; i++) {
+    //     console.log ("player: " + players[i].nickname + " has points: " + players[i].points);
+    // }
 
 
     socket.emit("player score updated", players);

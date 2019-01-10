@@ -48,7 +48,9 @@ class Introscreen {
 
     display(bg, level) {
 
-        if(level > 1) level_sound.play();
+        console.log("has focus?? " + document.hasFocus())
+
+        if(level > 1 && document.hasFocus()) level_sound.play();
         
         this.bg = bg;
         this.drawBackground();
